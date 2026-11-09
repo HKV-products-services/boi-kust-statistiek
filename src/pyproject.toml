@@ -3,27 +3,32 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "python_package_template/__init__.py"
+path = "kuststatistiek/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["python_package_template"]
+packages = ["kuststatistiek"]
 
 [project]
-name = "python_package_template"
-version = "0.0.1"
-description = "Python package template"
+name = "kuststatistiek"
+dynamic = ["version"]
+description = "Python port of the KNMI wind and sea water level statistics (BOI kust, Feb2026)"
 readme = "README.md"
+requires-python = ">=3.11"
 license = {text = "GNU-GPL V3"}
 authors = [
-  { name = "Guy Dupuits"},
-  { name = "David Haasnoot"},
+  { name = "P. Kindermann", email = "P.Kindermann@hkv.nl" },
 ]
 
 dependencies = [
+  "matplotlib",
   "numpy",
-  "pydantic"
+  "pandas",
+  "pyreadr",
+  "scikit-misc",
+  "scipy",
+  "tqdm",
 ]
 
 [project.urls]
-Documentation = "https://hkv-products-services.github.io/python_package_template"
-Source = "https://github.com/HKV-products-services/python_package_template"
+Documentation = "https://hkv-products-services.github.io/boi-kust-statistiek"
+Source = "https://github.com/HKV-products-services/boi-kust-statistiek"

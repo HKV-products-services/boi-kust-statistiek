@@ -1,4 +1,8 @@
-# Python package template
+# kuststatistiek
 
-Why two readme's? This is available to whomever downloads the python package.
-This can be a different audience to developers that visit your github page, this is also what is rendered on [PyPi](https://pypi.org/).
+Python port of the KNMI wind and sea water level statistics (de Valk & van den Brink, Feb2026 R scripts),
+made by HKV for the BOI coastal statistics (PR5197). The port reproduces the R results, bootstrap samples
+included: it reimplements R's random number generator (`set.seed`, `runif`, `rnorm`, `sample`) and the
+R functions that are used (`approx`, `quantile`, `loess`, `write.csv`, ...).
+
+See the [documentation](https://hkv-products-services.github.io/boi-kust-statistiek) for the example notebooks.

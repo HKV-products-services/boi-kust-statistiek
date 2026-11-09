@@ -2,18 +2,36 @@
 project:
   type: website
 
+# The notebooks need the KNMI input data and take hours (bootstraps): they are never executed
+# when the site is rendered. Run them locally (see README) to produce the results.
+execute:
+  enabled: false
+
 website:
-  title: "Python_package_template"
+  title: "kuststatistiek"
   navbar:
     left:
-      - text: "Examples"
+      - text: "Notebooks"
         menu:
-          - examples/notebooks/introduction.ipynb
+          - text: "1. Statistiek wind"
+            href: examples/notebooks/1_statistics_wind.ipynb
+          - text: "2. Productie wind"
+            href: examples/notebooks/2_production_wind.ipynb
+          - text: "3. Statistiek waterstand"
+            href: examples/notebooks/3_statistics_wl.ipynb
+          - text: "4. Statistiek waterstand overige locaties"
+            href: examples/notebooks/4_statistics_wl_others.ipynb
+          - text: "5. Statistiek waterstand Texel Noordzee"
+            href: examples/notebooks/5_statistics_wl_texeln.ipynb
+          - text: "6. Productie waterstand"
+            href: examples/notebooks/6_production_wl.ipynb
+          - text: "7. Afhankelijkheid waterstand-wind"
+            href: examples/notebooks/7_dependence.ipynb
       - text: "Python API"
         file: reference/index.qmd
     right:
       - icon: github
-        href: https://github.com/HKV-products-services/python_package_template
+        href: https://github.com/HKV-products-services/boi-kust-statistiek
         aria-label: GitHub
 format:
   html:
@@ -24,13 +42,39 @@ quartodoc:
   style: pkgdown
   dir: reference
   title: API Reference
-  package: python_package_template
+  package: kuststatistiek
   parser: numpy
-  dynamic: True
-  rewrite_all_pages: True
+  dynamic: true
+  rewrite_all_pages: true
   options:
     include_inherited: true
     include_empty: true
     include_attributes: true
     include_classes: true
     include_functions: true
+  sections:
+    - title: Analysis
+      desc: Computational chunks of the statistics and production scripts.
+      contents:
+        - analysis
+        - production
+    - title: Extreme value statistics
+      desc: Generalised Weibull fits and EVTools functions.
+      contents:
+        - gw
+        - evtools
+    - title: R compatibility
+      desc: R's random numbers and R semantics of the functions that are used.
+      contents:
+        - rrandom
+        - rstream
+        - rutils
+    - title: Input and output
+      contents:
+        - io.read_wind
+        - io.read_wl
+        - io.rdata
+    - title: Settings and plotting
+      contents:
+        - settings
+        - plotting
