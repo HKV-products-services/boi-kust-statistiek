@@ -6,12 +6,12 @@ build-backend = "hatchling.build"
 path = "kuststatistiek/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["kuststatistiek"]
+packages = ["boi-kust-statistiek"]
 
 [project]
 name = "kuststatistiek"
 dynamic = ["version"]
-description = "Python port of the KNMI wind and sea water level statistics (BOI kust, Feb2026)"
+description = "Python version of the KNMI wind and sea water level statistics (BOI kust, Feb2026)"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "GNU-GPL V3"}
