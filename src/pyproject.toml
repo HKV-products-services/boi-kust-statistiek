@@ -9,7 +9,7 @@ path = "kuststatistiek/__init__.py"
 packages = ["boi-kust-statistiek"]
 
 [project]
-name = "kuststatistiek"
+name = "boi-kust-statistiek"
 dynamic = ["version"]
 description = "Python version of the KNMI wind and sea water level statistics (BOI kust, Feb2026)"
 readme = "README.md"
