@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 path = "kuststatistiek/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["boi-kust-statistiek"]
+packages = ["kuststatistiek"]
 
 [project]
 name = "boi-kust-statistiek"

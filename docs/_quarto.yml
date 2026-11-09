@@ -44,7 +44,7 @@ quartodoc:
   title: API Reference
   package: kuststatistiek
   parser: numpy
-  dynamic: true
+  dynamic: false
   rewrite_all_pages: true
   options:
     include_inherited: true

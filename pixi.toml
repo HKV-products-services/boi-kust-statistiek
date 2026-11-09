@@ -59,6 +59,7 @@ ruff = ">=0.8.1"
 scikit-misc = "*"
 scipy = "*"
 tqdm = "*"
+python-build = ">=1.6.1,<2"
 
 [pypi-dependencies]
-kuststatistiek = { path = "src", editable = true }
+boi-kust-statistiek = { path = "src", editable = true }
