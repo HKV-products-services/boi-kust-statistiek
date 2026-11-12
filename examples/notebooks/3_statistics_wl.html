@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3. Statistiek van de hoogwaterstand, hoofdstations – kuststatistiek</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">kuststatistiek</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/1_statistics_wind.html">
+ <span class="dropdown-text">1. Statistiek wind</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/2_production_wind.html">
+ <span class="dropdown-text">2. Productie wind</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/3_statistics_wl.html">
+ <span class="dropdown-text">3. Statistiek waterstand</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/4_statistics_wl_others.html">
+ <span class="dropdown-text">4. Statistiek waterstand overige locaties</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/5_statistics_wl_texeln.html">
+ <span class="dropdown-text">5. Statistiek waterstand Texel Noordzee</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/6_production_wl.html">
+ <span class="dropdown-text">6. Productie waterstand</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../examples/notebooks/7_dependence.html">
+ <span class="dropdown-text">7. Afhankelijkheid waterstand-wind</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../reference/index.html"> 
+<span class="menu-text">Python API</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HKV-products-services/boi-kust-statistiek"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instellingen" id="toc-instellingen" class="nav-link active" data-scroll-target="#instellingen">Instellingen</a></li>
+  <li><a href="#voorbereiding" id="toc-voorbereiding" class="nav-link" data-scroll-target="#voorbereiding">Voorbereiding</a></li>
+  <li><a href="#toevalsgetallen-van-r-per-station" id="toc-toevalsgetallen-van-r-per-station" class="nav-link" data-scroll-target="#toevalsgetallen-van-r-per-station">Toevalsgetallen van R per station</a></li>
+  <li><a href="#stap-1-gemeten-hoogwaterstanden-r-chunk-eimeas" id="toc-stap-1-gemeten-hoogwaterstanden-r-chunk-eimeas" class="nav-link" data-scroll-target="#stap-1-gemeten-hoogwaterstanden-r-chunk-eimeas">Stap 1 – Gemeten hoogwaterstanden (R-chunk <code>eimeas</code>)</a></li>
+  <li><a href="#stap-2-hoogwaterstanden-koppelen-aan-de-gemeten-windrichting-r-chunk-dir-estimate-meas2" id="toc-stap-2-hoogwaterstanden-koppelen-aan-de-gemeten-windrichting-r-chunk-dir-estimate-meas2" class="nav-link" data-scroll-target="#stap-2-hoogwaterstanden-koppelen-aan-de-gemeten-windrichting-r-chunk-dir-estimate-meas2">Stap 2 – Hoogwaterstanden koppelen aan de gemeten windrichting (R-chunk <code>dir-estimate-meas2</code>)</a></li>
+  <li><a href="#stap-3-gw-staarten-uit-seas5-dcsm5-r-chunk-dir-es-seas5dcms5" id="toc-stap-3-gw-staarten-uit-seas5-dcsm5-r-chunk-dir-es-seas5dcms5" class="nav-link" data-scroll-target="#stap-3-gw-staarten-uit-seas5-dcsm5-r-chunk-dir-es-seas5dcms5">Stap 3 – GW-staarten uit SEAS5-DCSM5 (R-chunk <code>dir-es-seas5dcms5</code>)</a></li>
+  <li><a href="#stap-4-bootstrap-van-seas5-dcsm5-r-chunk-dir-estimate-bootstrap" id="toc-stap-4-bootstrap-van-seas5-dcsm5-r-chunk-dir-estimate-bootstrap" class="nav-link" data-scroll-target="#stap-4-bootstrap-van-seas5-dcsm5-r-chunk-dir-estimate-bootstrap">Stap 4 – Bootstrap van SEAS5-DCSM5 (R-chunk <code>dir-estimate-bootstrap</code>)</a></li>
+  <li><a href="#stap-5-gw-staarten-uit-de-metingen-r-chunk-omni-estimates-meas" id="toc-stap-5-gw-staarten-uit-de-metingen-r-chunk-omni-estimates-meas" class="nav-link" data-scroll-target="#stap-5-gw-staarten-uit-de-metingen-r-chunk-omni-estimates-meas">Stap 5 – GW-staarten uit de metingen (R-chunk <code>omni-estimates-meas</code>)</a></li>
+  <li><a href="#stap-6-bootstrap-van-de-metingen-r-chunk-dir-estimate-meas-bootstrap" id="toc-stap-6-bootstrap-van-de-metingen-r-chunk-dir-estimate-meas-bootstrap" class="nav-link" data-scroll-target="#stap-6-bootstrap-van-de-metingen-r-chunk-dir-estimate-meas-bootstrap">Stap 6 – Bootstrap van de metingen (R-chunk <code>dir-estimate-meas-bootstrap</code>)</a></li>
+  <li><a href="#stap-7-bootstrap-met-modelfout-r-chunk-dir-estimate-meas-bootstrap-moderr" id="toc-stap-7-bootstrap-met-modelfout-r-chunk-dir-estimate-meas-bootstrap-moderr" class="nav-link" data-scroll-target="#stap-7-bootstrap-met-modelfout-r-chunk-dir-estimate-meas-bootstrap-moderr">Stap 7 – Bootstrap met modelfout (R-chunk <code>dir-estimate-meas-bootstrap-moderr</code>)</a></li>
+  <li><a href="#stap-8-richtingsafhankelijkheid-gladstrijken-r-chunk-combine" id="toc-stap-8-richtingsafhankelijkheid-gladstrijken-r-chunk-combine" class="nav-link" data-scroll-target="#stap-8-richtingsafhankelijkheid-gladstrijken-r-chunk-combine">Stap 8 – Richtingsafhankelijkheid gladstrijken (R-chunk <code>combine</code>)</a></li>
+  <li><a href="#figuur-controle" id="toc-figuur-controle" class="nav-link" data-scroll-target="#figuur-controle">Figuur (controle)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">3. Statistiek van de hoogwaterstand, hoofdstations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Python-versie van het R-script <strong><code>statistics-wl10-impr.Rmd</code></strong> (KNMI, versie februari 2026).</p>
+<p>Dit notebook schat herhalingstijdwaarden (return values) van de hoogwaterstand, omnidirectioneel en per windrichtingssector, voor Vlissingen, Hoek van Holland, IJmuiden, Den Helder, Harlingen, Delfzijl en Hansweert:</p>
+<ol type="1">
+<li>inlezen van de gemeten hoogwaterstanden (gecorrigeerd voor de trend) en koppelen aan de gemeten windrichting;</li>
+<li>fitten van Generalised Weibull-staarten (GW) aan de modeldata van SEAS5-DCSM5, en schatten van de onzekerheid van de vormparameter met een bootstrap;</li>
+<li>fitten van GW-staarten aan de metingen, met de vormparameter uit SEAS5-DCSM5;</li>
+<li>schatten van de onzekerheid met een bootstrap van de meetjaren, zonder en met modelfout;</li>
+<li>gladstrijken van de richtingsafhankelijkheid. Het resultaat (<code>meas3</code>) wordt gebruikt voor de tabellen in <code>6_production_wl.ipynb</code>.</li>
+</ol>
+<p>De resultaten worden als <code>.pkl</code>-bestanden in <code>output_path</code> geschreven, met dezelfde namen en variabelen als de <code>.RData</code>-bestanden van het R-script.</p>
+<p>Elk station krijgt precies de toevalsgetallen die het in de R-run krijgt (<code>set.seed(342911)</code>, alle stations in de volgorde van R). Daarom geeft dit notebook dezelfde resultaten als het R-script, inclusief de bootstrap-trekkingen, ook als je maar één station of de stations in een andere volgorde doorrekent. Voorwaarde: <code>nb</code> en <code>r_stations</code> zijn gelijk aan die van de R-run.</p>
+<p>Rekentijd: ongeveer 1 minuut per bootstrap-trekking per station voor de bootstrap van SEAS5-DCSM5.</p>
+<p>Volgend notebook: <code>4_statistics_wl_others.ipynb</code>.</p>
+<section id="instellingen" class="level2">
+<h2 class="anchored" data-anchor-id="instellingen">Instellingen</h2>
+<p>Pas deze zo nodig aan. In <code>stations</code> mag je elke selectie van stations zetten, in elke volgorde. <code>r_stations</code> is de stationslijst van de R-run: daaruit volgen de toevalsgetallen, dus die pas je normaal niet aan. De standaardwaarden van de mappen, van <code>nb</code> en van <code>r_stations</code> staan in <code>kuststatistiek/settings.py</code>.</p>
+<div id="2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek <span class="im">import</span> settings</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>input_path <span class="op">=</span> settings.DATA_PATH  <span class="co"># map met de aangeleverde invoerdata</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> settings.OUTPUT_PATH  <span class="co"># map voor de resultaten</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nb <span class="op">=</span> settings.NB  <span class="co"># aantal bootstrap-trekkingen (R: nb &lt;- 100)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>r_stations <span class="op">=</span> settings.WL_STATIONS  <span class="co"># stationslijst van de R-run, in de volgorde van R</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># stations die je wilt doorrekenen (bijvoorbeeld alleen ["hoekvanh"])</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>stations <span class="op">=</span> [</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"vlissing"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hoekvanh"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ijmuiden"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"denhelde"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"harlinge"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"delfzijl"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hansweert"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="voorbereiding" class="level2">
+<h2 class="anchored" data-anchor-id="voorbereiding">Voorbereiding</h2>
+<p>Laad de functies en de vaste instellingen van het R-script. <code>RRandom</code> is een kopie van de toevalsgenerator van R, zodat de toevalsgetallen precies die van R zijn.</p>
+<div id="4" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.settings <span class="im">import</span> (</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Paths,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Bins,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    wl_settings,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    WL_STATIONS,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    WL_STATIONNAME,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    WL_WINDSTATIONS,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    WL_MEASFILE,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    PN,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.rstream <span class="im">import</span> wl_random_streams</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.io.read_wind <span class="im">import</span> read_seas5_multi</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.io.read_wl <span class="im">import</span> read_station_wlmeas, link_wlmeas_windmeas</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.analysis <span class="im">import</span> (</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    fit_seas5_tails,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    seas5_blocks,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    bootstrap_seas5,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    fit_meas_fixed_shape,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    meas_bootstrap_years,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    meas_bootstrap,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    model_error_draws,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    smooth_directionality,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.rutils <span class="im">import</span> save_pkl, load_pkl, r_apply_sd</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kuststatistiek.plotting <span class="im">import</span> plot_returnlevels</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> station <span class="kw">not</span> <span class="kw">in</span> r_stations:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"station </span><span class="sc">{</span>station<span class="sc">}</span><span class="ss"> staat niet in r_stations"</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> Paths(input_path<span class="op">=</span>input_path, output_path<span class="op">=</span>output_path)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>WL <span class="op">=</span> wl_settings(nb<span class="op">=</span>nb)  <span class="co"># constanten van het R-script (chunk 'fixed')</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> Bins()  <span class="co"># richtingssectoren</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>windstation <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">zip</span>(WL_STATIONS, WL_WINDSTATIONS)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># KNMI-windstation dat bij elk getijstation hoort</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>save_pkl(</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    paths.out(<span class="st">"statistics-wl10settings.pkl"</span>),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    stationsys5<span class="op">=</span>r_stations,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    stationname<span class="op">=</span>WL_STATIONNAME,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    freq<span class="op">=</span>WL.freq,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    EIvalue<span class="op">=</span>WL.EIvalue,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    delt<span class="op">=</span>WL.delt,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    factor<span class="op">=</span>WL.factor,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    pn<span class="op">=</span>PN,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    pthreshold<span class="op">=</span>WL.pthreshold,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    kthresh<span class="op">=</span>WL.kthresh,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    mthresh<span class="op">=</span>WL.mthresh,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>WL.x,</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="toevalsgetallen-van-r-per-station" class="level2">
+<h2 class="anchored" data-anchor-id="toevalsgetallen-van-r-per-station">Toevalsgetallen van R per station</h2>
+<p>In R komen alle toevalsgetallen uit één reeks, die stap na stap en binnen een stap station na station wordt gebruikt. Hier wordt die reeks voor alle stations van <code>r_stations</code> nagespeeld (alleen het trekken, zonder fits; dit duurt ongeveer een halve minuut). Voor elk station en elke stap wordt bewaard waar de reeks van dat station begint. Zo krijgt elk station precies de toevalsgetallen van de R-run, welke stations je ook doorrekent.</p>
+<div id="6" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>streams <span class="op">=</span> wl_random_streams(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    WL.seed, r_stations, nb, paths.input_path</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)  <span class="co"># begint zelf met set.seed(342911)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-1-gemeten-hoogwaterstanden-r-chunk-eimeas" class="level2">
+<h2 class="anchored" data-anchor-id="stap-1-gemeten-hoogwaterstanden-r-chunk-eimeas">Stap 1 – Gemeten hoogwaterstanden (R-chunk <code>eimeas</code>)</h2>
+<p>Lees de gemeten hoogwaterstanden in, gecorrigeerd voor de (gladde) trend. Net als in R wordt een heel klein toevalsgetal opgeteld, zodat er geen gelijke waarden zijn.</p>
+<p>Uitvoer: <code>&lt;station&gt;_multi_meas.pkl</code></p>
+<div id="8" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>wl_measdata <span class="op">=</span> {}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> read_station_wlmeas(station, paths.input_path, WL_MEASFILE)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    wlm <span class="op">=</span> (</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        a[<span class="st">"wspeed"</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> (streams[station][<span class="st">"eimeas"</span>].runif(<span class="bu">len</span>(a[<span class="st">"wspeed"</span>])) <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="fl">0.0001</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    wl_measdata[station] <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        wlm<span class="op">=</span>wlm, dtm<span class="op">=</span>a[<span class="st">"t"</span>].to_numpy(), Nm<span class="op">=</span><span class="bu">len</span>(wlm), hwtrend<span class="op">=</span>a[<span class="st">"hwtrend"</span>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_multi_meas.pkl"</span>), <span class="op">**</span>wl_measdata[station])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(wlm)<span class="sc">}</span><span class="ss"> hoogwaters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-2-hoogwaterstanden-koppelen-aan-de-gemeten-windrichting-r-chunk-dir-estimate-meas2" class="level2">
+<h2 class="anchored" data-anchor-id="stap-2-hoogwaterstanden-koppelen-aan-de-gemeten-windrichting-r-chunk-dir-estimate-meas2">Stap 2 – Hoogwaterstanden koppelen aan de gemeten windrichting (R-chunk <code>dir-estimate-meas2</code>)</h2>
+<p>Bij elk hoogwater wordt de windrichting genomen uit de uurmetingen van een nabijgelegen KNMI-station (vectorgemiddelde van de laatste 3 uur).</p>
+<p>Uitvoer: <code>processed-wl-winddir-&lt;station&gt;.pkl</code></p>
+<div id="10" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wlwinddir_measdata <span class="op">=</span> {}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    wlwinddir_measdata[station] <span class="op">=</span> link_wlmeas_windmeas(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        wl_measdata[station][<span class="st">"wlm"</span>],</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        wl_measdata[station][<span class="st">"dtm"</span>],</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        windstation[station],</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        paths.input_path,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    save_pkl(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        paths.out(<span class="ss">f"processed-wl-winddir-</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">.pkl"</span>), <span class="op">**</span>wlwinddir_measdata[station]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-3-gw-staarten-uit-seas5-dcsm5-r-chunk-dir-es-seas5dcms5" class="level2">
+<h2 class="anchored" data-anchor-id="stap-3-gw-staarten-uit-seas5-dcsm5-r-chunk-dir-es-seas5dcms5">Stap 3 – GW-staarten uit SEAS5-DCSM5 (R-chunk <code>dir-es-seas5dcms5</code>)</h2>
+<p>Fit de Generalised Weibull-staart aan de hoogwaterstanden van SEAS5-DCSM5, omnidirectioneel en per windrichtingssector.</p>
+<p>Uitvoer: <code>&lt;station&gt;_stats_multi.pkl</code></p>
+<div id="12" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>statdata <span class="op">=</span> {}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    wl_dcsm <span class="op">=</span> read_seas5_multi(station, paths.input_path)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    statdata[station] <span class="op">=</span> fit_seas5_tails(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        wl_dcsm[<span class="st">"wl"</span>], wl_dcsm[<span class="st">"dwind"</span>], WL, bins, caseId<span class="op">=</span>station</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_multi.pkl"</span>), <span class="op">**</span>statdata[station])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">: GW-fit SEAS5-DCSM5 klaar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-4-bootstrap-van-seas5-dcsm5-r-chunk-dir-estimate-bootstrap" class="level2">
+<h2 class="anchored" data-anchor-id="stap-4-bootstrap-van-seas5-dcsm5-r-chunk-dir-estimate-bootstrap">Stap 4 – Bootstrap van SEAS5-DCSM5 (R-chunk <code>dir-estimate-bootstrap</code>)</h2>
+<p>Trek <code>nb</code> bootstrap-steekproeven uit de SEAS5-DCSM5-data (er worden hele blokken herbemonsterd) en herhaal de GW-fit voor elke steekproef. Alleen de vormparameters worden bewaard: die worden gebruikt in stap 6 en 7.</p>
+<p>Uitvoer: <code>&lt;station&gt;_stats_wl_bootdata.pkl</code></p>
+<div id="14" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bootdata <span class="op">=</span> {}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    wl_dcsm <span class="op">=</span> read_seas5_multi(station, paths.input_path)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    blockno, blocks <span class="op">=</span> seas5_blocks(wl_dcsm[<span class="st">"dt"</span>], streams[station][<span class="st">"bootstrap"</span>], nb)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    bs <span class="op">=</span> bootstrap_seas5(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        wl_dcsm[<span class="st">"wl"</span>],</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        wl_dcsm[<span class="st">"dwind"</span>],</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        blockno,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        blocks,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        WL,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        bins,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        caseId<span class="op">=</span>station,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        dir_threshold<span class="op">=</span>WL.pthreshold[WL.kthresh <span class="op">-</span> <span class="dv">1</span>],</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        keep_quantiles<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    bootdata[station] <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        theta0bs<span class="op">=</span>bs[<span class="st">"theta0bs"</span>],</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        theta0dirbs<span class="op">=</span>bs[<span class="st">"theta0dirbs"</span>],</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        theta0sd<span class="op">=</span>r_apply_sd(bs[<span class="st">"theta0bs"</span>], <span class="dv">1</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        theta0dirsd<span class="op">=</span>r_apply_sd(bs[<span class="st">"theta0dirbs"</span>], <span class="dv">1</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        blocks<span class="op">=</span>blocks,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        blockno<span class="op">=</span>blockno,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_wl_bootdata.pkl"</span>), <span class="op">**</span>bootdata[station])</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">: bootstrap SEAS5-DCSM5 klaar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-5-gw-staarten-uit-de-metingen-r-chunk-omni-estimates-meas" class="level2">
+<h2 class="anchored" data-anchor-id="stap-5-gw-staarten-uit-de-metingen-r-chunk-omni-estimates-meas">Stap 5 – GW-staarten uit de metingen (R-chunk <code>omni-estimates-meas</code>)</h2>
+<p>Fit de GW-staart aan de metingen, met de vormparameter vastgezet op de schatting uit SEAS5-DCSM5 (stap 3).</p>
+<p>Uitvoer: <code>&lt;station&gt;_stats_multi_meas0.pkl</code> en <code>stats_omni_meas.pkl</code> (een lijst met de fits van alle stations van <code>r_stations</code>, zoals in R; bij een selectie van stations worden alleen die stations in de lijst bijgewerkt)</p>
+<div id="16" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f_omni <span class="op">=</span> paths.out(<span class="st">"stats_omni_meas.pkl"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>esmeasGW <span class="op">=</span> load_pkl(f_omni)[<span class="st">"esmeasGW"</span>] <span class="cf">if</span> f_omni.exists() <span class="cf">else</span> []</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(esmeasGW) <span class="op">!=</span> <span class="bu">len</span>(r_stations):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    esmeasGW <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> <span class="bu">len</span>(r_stations)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>meas0 <span class="op">=</span> {}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    meas0[station], es <span class="op">=</span> fit_meas_fixed_shape(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        statdata[station],</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        wl_measdata[station][<span class="st">"wlm"</span>],</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        wlwinddir_measdata[station][<span class="st">"wlmm"</span>],</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        wlwinddir_measdata[station][<span class="st">"winddir"</span>],</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        WL,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        bins,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        caseId<span class="op">=</span>station,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    esmeasGW[r_stations.index(station)] <span class="op">=</span> es</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_multi_meas0.pkl"</span>), <span class="op">**</span>meas0[station])</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>save_pkl(f_omni, esmeasGW<span class="op">=</span>esmeasGW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-6-bootstrap-van-de-metingen-r-chunk-dir-estimate-meas-bootstrap" class="level2">
+<h2 class="anchored" data-anchor-id="stap-6-bootstrap-van-de-metingen-r-chunk-dir-estimate-meas-bootstrap">Stap 6 – Bootstrap van de metingen (R-chunk <code>dir-estimate-meas-bootstrap</code>)</h2>
+<p>Trek <code>nb</code> bootstrap-steekproeven van de meetjaren en herhaal de fit van stap 5 voor elke steekproef, met de vormparameters uit de bootstrap van SEAS5-DCSM5 (stap 4), zonder modelfout. (Het resultaat <code>meas1</code> wordt in R alleen voor figuren gebruikt.)</p>
+<p>Uitvoer: <code>&lt;station&gt;_meas_wl_bootdata.pkl</code> (de steekproeven) en <code>&lt;station&gt;_stats_multi_meas1.pkl</code></p>
+<div id="18" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variabelen van meas0 die worden overgenomen in meas1 en meas2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>meas0_keys <span class="op">=</span> [</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esmeasGWpure"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"esmeasGWfull"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mum"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mum"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pbin0m"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mum0"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mum0"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"qmum"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>measbootdata <span class="op">=</span> {}</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    m, mm <span class="op">=</span> wl_measdata[station], wlwinddir_measdata[station]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    measbootdata[station] <span class="op">=</span> meas_bootstrap_years(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        m[<span class="st">"wlm"</span>],</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        m[<span class="st">"dtm"</span>],</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        mm[<span class="st">"wlmm"</span>],</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        mm[<span class="st">"dtmm"</span>],</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        mm[<span class="st">"winddir"</span>],</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        streams[station][<span class="st">"meas_bootstrap"</span>],</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        nb,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_meas_wl_bootdata.pkl"</span>), <span class="op">**</span>measbootdata[station])</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> meas_bootstrap(</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        measbootdata[station],</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        bootdata[station][<span class="st">"theta0bs"</span>],</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        bootdata[station][<span class="st">"theta0dirbs"</span>],</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        WL,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        bins,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        caseId<span class="op">=</span>station,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        pure<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    m0 <span class="op">=</span> meas0[station]</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    save_pkl(</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_multi_meas1.pkl"</span>),</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>{k: m0[k] <span class="cf">for</span> k <span class="kw">in</span> meas0_keys},</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        qmbs<span class="op">=</span>r[<span class="st">"qmbs"</span>],</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        qmpurebs<span class="op">=</span>r[<span class="st">"qmpurebs"</span>],</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        thetampurebs<span class="op">=</span>r[<span class="st">"thetampurebs"</span>],</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span>WL.freq,</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        Qfreqm<span class="op">=</span>m0[<span class="st">"Qfreqm"</span>],</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        Qfreq0m<span class="op">=</span>m0[<span class="st">"Qfreq0m"</span>],</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        Qmbs<span class="op">=</span>r[<span class="st">"Qmbs"</span>],</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        Q0mbs<span class="op">=</span>r[<span class="st">"Q0mbs"</span>],</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        Qmsd<span class="op">=</span>r[<span class="st">"Qmsd"</span>],</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        Q0msd<span class="op">=</span>r[<span class="st">"Q0msd"</span>],</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-7-bootstrap-met-modelfout-r-chunk-dir-estimate-meas-bootstrap-moderr" class="level2">
+<h2 class="anchored" data-anchor-id="stap-7-bootstrap-met-modelfout-r-chunk-dir-estimate-meas-bootstrap-moderr">Stap 7 – Bootstrap met modelfout (R-chunk <code>dir-estimate-meas-bootstrap-moderr</code>)</h2>
+<p>Hetzelfde als stap 6, maar eerst wordt een toevallige modelfout (standaardafwijking <code>modelstd</code> = 0,1) opgeteld bij de vormparameters.</p>
+<p>Uitvoer: <code>&lt;station&gt;_stats_multi_meas2.pkl</code></p>
+<div id="20" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>meas2 <span class="op">=</span> {}</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    theta00bs, theta00dirbs <span class="op">=</span> model_error_draws(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        bootdata[station][<span class="st">"theta0bs"</span>],</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        bootdata[station][<span class="st">"theta0dirbs"</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        WL,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        streams[station][<span class="st">"model_error"</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> meas_bootstrap(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        measbootdata[station], theta00bs, theta00dirbs, WL, bins, caseId<span class="op">=</span>station</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    m0 <span class="op">=</span> meas0[station]</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    meas2[station] <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>{k: m0[k] <span class="cf">for</span> k <span class="kw">in</span> meas0_keys},</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        theta00bs<span class="op">=</span>theta00bs,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        theta00dirbs<span class="op">=</span>theta00dirbs,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        qmbs<span class="op">=</span>r[<span class="st">"qmbs"</span>],</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span>WL.freq,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        Qfreqm<span class="op">=</span>m0[<span class="st">"Qfreqm"</span>],</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        Qfreq0m<span class="op">=</span>m0[<span class="st">"Qfreq0m"</span>],</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        Qmbs<span class="op">=</span>r[<span class="st">"Qmbs"</span>],</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        Q0mbs<span class="op">=</span>r[<span class="st">"Q0mbs"</span>],</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        Qmsd<span class="op">=</span>r[<span class="st">"Qmsd"</span>],</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        Q0msd<span class="op">=</span>r[<span class="st">"Q0msd"</span>],</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_multi_meas2.pkl"</span>), <span class="op">**</span>meas2[station])</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">: bootstrap met modelfout klaar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="stap-8-richtingsafhankelijkheid-gladstrijken-r-chunk-combine" class="level2">
+<h2 class="anchored" data-anchor-id="stap-8-richtingsafhankelijkheid-gladstrijken-r-chunk-combine">Stap 8 – Richtingsafhankelijkheid gladstrijken (R-chunk <code>combine</code>)</h2>
+<p>Combineer de omnidirectionele schattingen uit de metingen met de richtingsafhankelijkheid uit SEAS5-DCSM5, gladgestreken over de richtingssectoren. Dit is het eindresultaat dat voor de tabellen wordt gebruikt.</p>
+<p>Uitvoer: <code>&lt;station&gt;_stats_multi_meas3.pkl</code></p>
+<div id="22" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>meas3 <span class="op">=</span> {}</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    meas3[station] <span class="op">=</span> smooth_directionality(statdata[station], meas2[station], WL, bins)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    save_pkl(paths.out(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss">_stats_multi_meas3.pkl"</span>), <span class="op">**</span>meas3[station])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>station<span class="sc">}</span><span class="ss"> klaar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="figuur-controle" class="level2">
+<h2 class="anchored" data-anchor-id="figuur-controle">Figuur (controle)</h2>
+<p>De uiteindelijke herhalingstijdwaarden van de hoogwaterstand per richting, voor enkele herhalingstijden, per station. (De overige figuren van het R-script zijn hier niet overgenomen.)</p>
+<div id="24" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> station <span class="kw">in</span> stations:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    plot_returnlevels(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        meas3[station][<span class="st">"Qfreq0m"</span>],</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        bins.cats0,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        WL.freq,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span>station,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">"hoogwaterstand [m]"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
