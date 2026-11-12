@@ -1,5 +1,23 @@
 ---
-title: "Python_package_template"
+title: "kuststatistiek"
 ---
 
-This package contains a template for python projects. This is developed by HKV and is published under the GNU GPL-3 license.
+Python port of the KNMI wind and sea water level statistics (de Valk & van den Brink, R scripts delivered
+in February 2026), made by HKV for the BOI coastal statistics. Every R script has a notebook that runs the
+same steps in the same order. Starting from `set.seed(...)`, a notebook run gives the same results as the
+R script, bootstrap samples included.
+
+| R script (Feb2026)                                | Notebook |
+|---------------------------------------------------|----------|
+| `statistics-wind10-impr.Rmd`                      | [1. Statistiek wind](examples/notebooks/1_statistics_wind.ipynb) |
+| `production-wind10-impr.Rmd`                      | [2. Productie wind](examples/notebooks/2_production_wind.ipynb) |
+| `statistics-wl10-impr.Rmd`                        | [3. Statistiek waterstand](examples/notebooks/3_statistics_wl.ipynb) |
+| `statistics-wl10others-impr.Rmd`                  | [4. Overige locaties](examples/notebooks/4_statistics_wl_others.ipynb) |
+| `statistics-wl10-omni-texeln-impr.Rmd`            | [5. Texel Noordzee](examples/notebooks/5_statistics_wl_texeln.ipynb) |
+| `production-wl10extended-impr.Rmd`                | [6. Productie waterstand](examples/notebooks/6_production_wl.ipynb) |
+| `dependence-wlwind10-impr.Rmd` (production chunk) | [7. Afhankelijkheid](examples/notebooks/7_dependence.ipynb) |
+
+The notebooks are shown here without output: they need the KNMI input data and take hours to run. See the
+README of the repository for how to run them. The notebook texts are in Dutch.
+
+The package is published under the GNU GPL-3 license.

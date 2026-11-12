@@ -1,11 +1,11 @@
 [workspace]
-name = "Python_package_template"
-version = "0.0.1"
-description = "Python package template"
+name = "boi-kust-statistiek"
+version = "0.1.0"
+description = "Python port of the KNMI wind and sea water level statistics (BOI kust)"
 channels = ["conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64"]
 readme = "README.md"
-license = "GPL-3.0"
+license = "GPL-3.0-or-later"
 license-file = "LICENSE"
 
 [tasks]
@@ -15,7 +15,7 @@ install = "pre-commit install"
 # Docs
 quartodoc-build = { cmd = "quartodoc build && rm objects.json", cwd = "docs" ,inputs = [
     "docs/_quarto.yml",
-    "src/Python_package_template",
+    "src/kuststatistiek",
     ],outputs = [
     "docs/reference/"
     ]}
@@ -23,7 +23,7 @@ quarto-preview = { cmd = "export QUARTO_PYTHON=python && quarto preview docs", d
     "quartodoc-build",
 ] }
 quarto-check = { cmd = "quarto check all", depends-on = ["quartodoc-build"] }
-quarto-render = { cmd = "export QUARTO_PYTHON=python && quarto render docs --to html --execute", depends-on = [
+quarto-render = { cmd = "export QUARTO_PYTHON=python && quarto render docs --to html", depends-on = [
     "quartodoc-build",
 ] }
 docs = { depends-on = ["quarto-preview"] }
@@ -48,16 +48,18 @@ matplotlib ="*"
 nbclient ="*"
 nbformat ="*"
 numpy ="*"
-openpyxl = "*"
 pandas ="*"
 pre-commit = "*"
 pytest ="*"
 pytest-cov = "*"
-pydantic = ">=2.12.4,<3"
+pyreadr = "*"
 quarto = ">=1.5.57"
 quartodoc = ">=0.9.1"
 ruff = ">=0.8.1"
+scikit-misc = "*"
+scipy = "*"
 tqdm = "*"
+python-build = ">=1.6.1,<2"
 
 [pypi-dependencies]
-python_package_template = { path = "src", editable = true }
+boi-kust-statistiek = { path = "src", editable = true }

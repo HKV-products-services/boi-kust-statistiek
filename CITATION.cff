@@ -3,16 +3,16 @@
 authors:
   -
     affiliation: "HKV lijn in water"
-    family-names: Dupuits
-    given-names: Guy
-  -
-    affiliation: "HKV lijn in water"
-    family-names: Haasnoot
-    given-names: David
+    family-names: Kindermann
+    given-names: P.
 
-cff-version: "0.0.1"
+cff-version: "1.2.0"
+version: "0.1.0"
 keywords:
   - Waterveiligheid
+  - Extreme value statistics
+  - Sea water level
+  - Wind
 license: "GPL-3.0-or-later"
 message: "If you use this software, please cite it using these metadata."
-title: python_package_template
+title: kuststatistiek

@@ -1,43 +1,35 @@
-# Python package template [Pixi]
+# Wind- en zeewaterstandstatistiek voor BOI
 
-[Pixi](https://pixi.prefix.dev/latest/) manages packages broarder sence and thus replaces `conda`. [UV](https://docs.astral.sh/uv/) is a package which is a replacement for `pip` in package managing for python. The alternative python package template for uv can be found at [HKV-products-services/python_package_template_uv](https://github.com/HKV-products-services/python_package_template_uv). Depending on your needs one is more suited than the other.
+Python-versie van de KNMI-statistiek voor wind en zeewaterstand (de Valk & van den Brink, R-scripts versie
+februari 2026), gemaakt door HKV voor de code review PR5197.30. Elk R-script heeft een notebook in
+`docs/examples/notebooks` dat dezelfde stappen in dezelfde volgorde uitvoert. Vanaf `set.seed(...)` geeft een
+run van het notebook dezelfde resultaten als het R-script, inclusief de bootstrap-samples.
 
-This template package contains core functionality for a python package, developed to showcase and speed up the process of developing a python package. This Python package template is developed by HKV, though based heavily on other open source projects and is published under the GNU GPL-3 license.
+| R-script (versie feb. 2026)            | Python-notebook                  | seed    |
+|------------------------------------------|----------------------------------|---------|
+| `statistics-wind10-impr.Rmd`             | `1_statistics_wind.ipynb`        | 449723  |
+| `production-wind10-impr.Rmd`             | `2_production_wind.ipynb`        | –       |
+| `statistics-wl10-impr.Rmd`               | `3_statistics_wl.ipynb`          | 342911  |
+| `statistics-wl10others-impr.Rmd`         | `4_statistics_wl_others.ipynb`   | 180225  |
+| `statistics-wl10-omni-texeln-impr.Rmd`   | `5_statistics_wl_texeln.ipynb`   | 379233  |
+| `production-wl10extended-impr.Rmd`       | `6_production_wl.ipynb`          | –       |
+| `dependence-wlwind10-impr.Rmd` (production-chunk) | `7_dependence.ipynb`    | –       |
 
-## Configuring the template (remove before publishing)
+## Opbouw van de repository
 
-### Naming
+| pad | inhoud |
+|-----|--------|
+| `src/kuststatistiek/` | het Python-package |
+| `docs/examples/notebooks/` | de notebooks (één per R-script), opgeslagen zonder uitvoer |
+| `docs/` | Quarto-website met de notebooks en de API-referentie (quartodoc) |
+| `test/` | pytest-tests |
 
-The current package name is `python_package_template` and `# Python package template`, if you search for this in your IDE (e.g. VS Code) you can replace these with your given name.
+## Installatie
 
-### Pre-commit
-
-This repo has an example pre-commit configuration in `.pre-commit-config.yaml`.
-Depending on your needs you might want to uncomment certain sections.
-Let us know by making an issue if we missed a useful pre-commit.
-Use `pre-commit install --hook-type pre-commit --hook-type pre-push` to automatically run pre-commit.
-
-### GitHub Tests
-
-In the folder `.github` there are four workflows which run automatically.
-You will need to adjust these depending on your needs.
-
-### Pixi
-
-Read bellow for more information on pixi and a quick guideline you can include in your project.
-
-## Getting started
-
-### Using install (in future)
-
-run `pip install Python_package_template`
-
-### developing with pixi
-
-To manage the environment we use Pixi.
+De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/).
 
 <details>
-<summary>windows</summary>
+<summary>Windows</summary>
 
 ```powershell
 iwr -useb https://pixi.sh/install.ps1 | iex
@@ -54,15 +46,82 @@ curl -fsSL https://pixi.sh/install.sh | bash
 
 </details>
 
-#### installing
-
-With the `Pixi` command in powershell install the python environment:
+Installeer daarna de omgeving (inclusief het package zelf, editable) en de pre-commit hooks:
 
 ```bash
- cd ../python_package_template
- pixi install
+cd boi-kust-statistiek
+pixi install
+pixi run install
 ```
 
-The `pixi.lock` file loads the correct packages and downloads to the `.pixi` file, you can use this environment in developing and resting.
+Handige taken: `pixi run pytest`, `pixi run pre-commit`, `pixi run docs` (preview van de website).
 
-For questions about how to use this package contact `dupuits@hkv.nl` or `haasnoot@hkv.nl`.
+## Gebruik
+
+1. Geef aan waar de invoerdata staan en waar de resultaten heen moeten, met de omgevingsvariabelen
+   (`KUSTSTATISTIEK_DATA_PATH`, `KUSTSTATISTIEK_OUTPUT_PATH`, `KUSTSTATISTIEK_FIG_PATH`) of door
+   `input_path` / `output_path` aan te passen in de cel **Settings** bovenaan elk notebook. De invoerdata zijn de
+   map `data` uit het KNMI-archief `Update_statistiek_zeewaterstand_wind_06_archive_Feb2026`; ze staan niet
+   in deze repository.
+2. Open het notebook in VS Code (of Jupyter) en kies de pixi-omgeving (`.pixi/envs/default`).
+   Controleer waar nodig `stations` en `nb` (aantal bootstrap-samples) in de cel Settings.
+3. Voer alle cellen uit (*Run All*). Elke stap komt overeen met een R-chunk; de naam van de chunk staat in de kop.
+
+Draai de notebooks in de volgorde van hun nummers: latere notebooks lezen de resultaten van eerdere
+(2 heeft 1 nodig; 4 heeft 3 nodig; 6 heeft 2, 3 en 4 nodig; 5 en 7 hebben alleen de invoerdata nodig).
+De statistiek-notebooks met bootstraps zijn traag: ongeveer 1 minuut per bootstrap-sample per station
+(100 samples x 7 stations is ongeveer een halve dag per notebook).
+
+`stations` kan elke selectie van stations zijn, in elke volgorde (bijv. alleen `["hoekvanh"]`): elk station
+krijgt nog steeds precies de toevalsgetallen die het in de R-run met alle stations krijgt. De notebooks spelen
+eerst de trekkingen van de R-run na voor alle stations van `r_stations` (de stationslijst van de R-run, in
+R-volgorde; duurt ongeveer een halve minuut, zonder fits) en bewaren per station en stap de positie in de
+toevalsreeks waar R voor dat station begint te trekken (`kuststatistiek/rstream.py`).
+Om dezelfde resultaten als een R-run te krijgen, moeten `nb` en `r_stations` gelijk zijn aan die van die R-run.
+Elke cel die toevalsgetallen trekt, begint zelf met `set.seed` of met een eigen kopie van de bewaarde positie
+in de reeks, zodat elke cel opnieuw kan worden uitgevoerd (bijv. na een onderbreking) zonder dat de
+toevalsgetallen veranderen.
+Notebooks 2 en 6 slaan stations over waarvan de resultaten er nog niet zijn. De afhankelijkheidstabellen
+(notebook 7) hebben één rij per station, in de volgorde van `stations`.
+
+De standaardwaarden van `input_path`, `output_path`, `nb` en `r_stations` staan in `src/kuststatistiek/settings.py`
+(`DATA_PATH`, `OUTPUT_PATH`, `NB`, `WIND_STATIONS` / `WL_STATIONS` / `OTHER_STATIONS`).
+
+Uitvoerbestanden hebben de R-namen met extensie `.pkl` (een dict met precies de variabelenamen van de
+R-aanroep `save()`); CSV-tabellen hebben de R-namen en hetzelfde tekstformaat als R's `write.csv`.
+
+## Package `kuststatistiek`
+
+| module          | inhoud |
+|-----------------|--------|
+| `rrandom.py`    | R's toevalsgetallen: Mersenne-Twister met R's `set.seed`-scrambling, `runif`, `rnorm` (inversie, R's `qnorm`), `sample` (rejection sampling van R >= 3.6) |
+| `rstream.py`    | R's toevalsreeks opgesplitst per station: speelt de trekkingen van een R-run na en bewaart de positie in de reeks per station en stap, zodat stations in elke volgorde of selectie kunnen worden doorgerekend |
+| `rutils.py`     | R-semantiek: `approx`, `quantile` (type 7), `signif`, `sum/mean/sd` (sommatie in long double), `loess` (scikit-misc = de netlib-code van R), `%*%`, opmaak van `write.csv` |
+| `gw.py`         | `FitGW_iHilli`, `qGWdisp`, `h` (EVTools), `esextr`, `collect`, `assigncat`, `taildir` |
+| `evtools.py`    | `EI`, `Wfit`, `tau2upot`, `tau2u10`, `correctfrequencies`, `eimdl` |
+| `analysis.py`   | de rekenchunks (fits, bootstraps, afvlakking, combinatie voor de overige stations) |
+| `production.py` | Weibull-herfit en tabellen met conditionele kansen (22,5 en 30 graden, omni) |
+| `io/`           | inleesroutines voor KNMI-winddata, getijmeetstations, Texel Noordzee-data, SEAS5(-DCSM5)-bestanden, een minimale `.RData`-lezer (`rdata.py`) |
+| `settings.py`   | constanten, richtingsklassen (statistiek: noord = 0; productie: noord = 360), stationstabellen |
+| `plotting.py`   | optionele figuren |
+
+Benodigd: numpy, pandas, scipy, pyreadr, scikit-misc, tqdm, matplotlib (en ipykernel om de notebooks te draaien); deze zitten allemaal in de pixi-omgeving.
+
+## Opmerkingen over reproduceerbaarheid
+
+- Deterministische resultaten komen tot op afrondingsniveau overeen met R (relatieve verschillen <= ~1e-10,
+  meestal bit-identiek): R op Windows gebruikt een andere `log`/`atan2` en sommatie in long double.
+- De trekkingen zijn bit-identiek aan R, behalve dat ~1 op de 3000 normale trekkingen in het laatste bit kan
+  verschillen (opnieuw door R's `log` op Windows); dit heeft geen zichtbaar effect.
+- De resultaten van een R-sessie komen alleen overeen als die sessie vanaf `set.seed` de chunks op volgorde
+  heeft doorlopen.
+- Deze code zijn een één-op-één reproductie van de R-scripts. Eigenaardigheden van de R-versie zijn dus bewust nagebootst.
+- `statistics-wl10-impr.Rmd`, chunk `dir-estimate-meas2`: de vectorgemiddelde windrichting
+  `(atan2(S, C)*(1/dc)) %% 360` is 0 of 360 graden voor wind van precies noord, afhankelijk van het platform
+  (KNMI: 0, R op Windows: 360). 0 en 360 vallen in verschillende sectoren van 45 graden, wat de
+  richtingsafhankelijke waterstandsstatistiek tot ~3 cm verandert. Python zet |hoek| < 1e-9 eerst op 0,
+  waarmee de tabellen van KNMI worden gereproduceerd.
+
+## Contact
+
+Voor vragen over dit package: neem contact op met P. Kindermann (`P.Kindermann@hkv.nl`).
