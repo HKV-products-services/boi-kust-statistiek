@@ -89,7 +89,8 @@ def fit_seas5_tails(values, dirs, var, bins, caseId=None):
 # ==========================================================================================
 def seas5_blocks(dt, rng, nb):
     """Blocks = 6-month SEAS5 runs, separated by date jumps; blocks <- sample(1:nblock, nb*m, TRUE)."""
-    t = pd.DatetimeIndex(dt).asi8.astype(float) / 1e9
+    # seconds; via datetime64[ns] because pyreadr may return datetime64[us] (asi8 is then in us)
+    t = np.asarray(dt, dtype="datetime64[ns]").astype(np.int64).astype(float) / 1e9
     ddt = np.diff(t) / 86400.0  # difftime(..., units = "days")
     idd = np.concatenate([[True], (ddt > 2) | (ddt < 0)])
     blockno = np.cumsum(idd)

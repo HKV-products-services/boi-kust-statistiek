@@ -101,6 +101,57 @@ De standaardwaarden van `input_path`, `output_path`, `nb` en `r_stations` staan 
 Uitvoerbestanden hebben de R-namen met extensie `.pkl` (een dict met precies de variabelenamen van de
 R-aanroep `save()`); CSV-tabellen hebben de R-namen en hetzelfde tekstformaat als R's `write.csv`.
 
+## Voorbewerking van de SEAS5/DCSM-5-modeldata
+
+De invoerbestanden `<station>_multi_int.RData` en `<station>_wind.RData` zijn door KNMI gemaakt met de
+R-scripts `readmixed.R`, `concat_multi_ex.R` en `concat_wind.R` (in het KNMI-archief, naast `data`). Deze
+scripts zijn geport naar `kuststatistiek.preprocessing`:
+
+| R-script              | Python                       | resultaat |
+|-----------------------|------------------------------|-----------|
+| `readmixed.R`         | `read_mixed` / `read_mixed_file` | per SEAS5-run en station de hoogwaterstanden van DCSM-5 met wind en windschuifspanning van het dichtstbijzijnde SEAS5-roosterpunt: `<station>_<run>_int.nc` |
+| `concat_multi_ex.R`   | `concat_multi`               | `<station>_multi_int.nc` (dt, wl, surge, mstress, dstress, mwind, dwind, timelength) |
+| `concat_wind.R`       | `concat_wind`                | `<station>_wind.nc` (dt, mstress, dstress, mwind, dwind, timelength) |
+
+```python
+from kuststatistiek.preprocessing import read_mixed, concat_multi
+
+# de paden in selection_stress_wind_tide.txt verwijzen naar de KNMI-servers; vertaal ze naar de lokale kopie
+read_mixed("selection_stress_wind_tide.txt", out_dir="collocated/vlissing",
+           path_map={"/net/pc200003/nobackup_1/users/brinkh": "D:/SEAS5"}, stations=["vlissing"],
+           lat=[51.42], lon=[3.50])
+concat_multi("collocated", stations=["vlissing"], out_path="data")
+```
+
+- Python kan geen R-lijsten naar `.RData` schrijven; de voorbewerking schrijft daarom netCDF met dezelfde
+  variabelenamen. `read_seas5_wind` en `read_seas5_multi` lezen het `.RData`-bestand als dat er is, en anders
+  het `.nc`-bestand. `concat_multi` leest zowel de `.RData`-bestanden van `readmixed.R` als de `.nc`-bestanden
+  van `read_mixed`.
+- Voor de ruwe modeldata (netCDF-bestanden van SEAS5 en DCSM-5 op de KNMI-servers, zie
+  `selection_stress_wind_tide.txt`) is toegang via KNMI nodig; ze zitten niet in het archief.
+- De ports zijn op synthetische data vergeleken met de R-scripts (R 4.5.3): met `discard_first_month=False` zijn
+  de uitkomsten identiek, op 1 ulp in `mstress`/`mwind` na in enkele gevallen waarin `sqrt` van R onder Windows
+  niet correct afrondt.
+
+Correcties van de bevindingen uit de code review (standaard aan; `discard_first_month=False` geeft het gedrag
+van de R-scripts):
+
+- **Eerste maand (inspeelperiode) van elke run.** In `selection_stress_wind_tide.txt` hebben 6 runs (ensemble 00
+  van 198101 t/m 198106) `tstart = 1`, waardoor hun eerste maand in `<station>_multi_int` terechtkomt; daarnaast
+  beginnen 500 februari-runs in schrikkeljaren op 29 februari. `read_mixed` gooit daarom alles weg vóór de eerste
+  dag van de maand na de start van de run (naast `tstart`/`tend`). De geleverde `*_multi_int.RData` bevatten deze
+  data nog; dit is pas opgelost als de bestanden opnieuw worden aangemaakt.
+- **`concat_wind` kan de SEAS5-netCDF-bestanden lezen.** `concat_wind.R` laadt halfjaarbestanden die KNMI uit de
+  SEAS5-bestanden heeft gemaakt (niet geleverd) en geeft een error op de `.nc`-bestanden zelf. `concat_wind` leest
+  de `.nc`-bestanden (`seasonal_system5.<datum>.<ensemble>.nc`, eventueel in submappen met `recursive=True`)
+  direct: wind en windschuifspanning van het dichtstbijzijnde roosterpunt, maanden 2 t/m 7 van elke run (dezelfde
+  periode als de waterstanden). Halfjaarbestanden (`.RData`) worden zoals in R gebruikt; dan is station j kolom j,
+  en gebruikt `concat_wind.R` uit het archief de stationslijst met `harlinge`, terwijl de geleverde data
+  `westters_wind.RData` bevat. Bij de `.nc`-bestanden kan elke stationslijst (bijv. `WIND_STATIONS`).
+- **Texel Noordzee** (`SEAS5_hwloc_230.RData`) is niet met `readmixed.R` gemaakt en het script ontbreekt; dit kan
+  niet worden gereconstrueerd. `read_mixed` kan wel extra stations verwerken (`stations`, `lat`, `lon`) als de
+  variabelenaam in de DCSM-5-bestanden bekend is.
+
 ## Package `kuststatistiek`
 
 | module          | inhoud |
@@ -112,11 +163,12 @@ R-aanroep `save()`); CSV-tabellen hebben de R-namen en hetzelfde tekstformaat al
 | `evtools.py`    | `EI`, `Wfit`, `tau2upot`, `tau2u10`, `correctfrequencies`, `eimdl` |
 | `analysis.py`   | de rekenchunks (fits, bootstraps, afvlakking, combinatie voor de overige stations) |
 | `production.py` | Weibull-herfit en tabellen met conditionele kansen (22,5 en 30 graden, omni) |
-| `io/`           | inleesroutines voor KNMI-winddata, getijmeetstations, Texel Noordzee-data, SEAS5(-DCSM5)-bestanden, een minimale `.RData`-lezer (`rdata.py`) |
+| `preprocessing.py` | voorbewerking van de SEAS5/DCSM-5-modeldata (`readmixed.R`, `concat_multi_ex.R`, `concat_wind.R`) |
+| `io/`           | inleesroutines voor KNMI-winddata, getijmeetstations, Texel Noordzee-data, SEAS5(-DCSM5)-bestanden, een minimale `.RData`-lezer (`rdata.py`), netCDF (`netcdf.py`) |
 | `settings.py`   | constanten, richtingsklassen (statistiek: noord = 0; productie: noord = 360), stationstabellen |
 | `plotting.py`   | optionele figuren |
 
-Benodigd: numpy, pandas, scipy, pyreadr, scikit-misc, tqdm, matplotlib (en ipykernel om de notebooks te draaien); deze zitten allemaal in de pixi-omgeving.
+Benodigd: numpy, pandas, scipy, pyreadr, netCDF4, scikit-misc, tqdm, matplotlib (en ipykernel om de notebooks te draaien); deze zitten allemaal in de pixi-omgeving.
 
 ## Contact
 

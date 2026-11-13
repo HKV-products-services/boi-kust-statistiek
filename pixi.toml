@@ -60,6 +60,7 @@ scikit-misc = "*"
 scipy = "*"
 tqdm = "*"
 python-build = ">=1.6.1,<2"
+netcdf4 = ">=1.7.5,<2"
 
 [pypi-dependencies]
 boi-kust-statistiek = { path = "src", editable = true }

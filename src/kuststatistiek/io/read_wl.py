@@ -98,8 +98,10 @@ def read_station_wlmeas(station, path, measfile):
     return read_wlmeas(path, fname) if fmt == 1 else read_wlothermeas(path, fname)
 
 
-def _hwextract(data):
-    """hwextract() inside readwlmeastexeln.R: peaks at least 54 samples (9 h) apart."""
+def hwextract(data):
+    """hwextract() of readwlmeastexeln.R and readmixed.R: peaks at least 54 samples (9 h) apart.
+
+    Returns the high-water values and their 0-based indices in `data`."""
     lw = 6 * 9
     ld = len(data)
     with np.errstate(invalid="ignore"):
@@ -152,7 +154,7 @@ def read_wlmeastexeln(
             keep[ii[1]] = False
     dt = dt[keep]
     waarde = waarde[keep]
-    phw, ind = _hwextract(waarde)
+    phw, ind = hwextract(waarde)
     return _trend_correct(pd.DatetimeIndex(dt[ind]), phw * 0.01, trend_fit=False)
 
 
