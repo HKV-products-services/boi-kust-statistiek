@@ -26,15 +26,16 @@ run van het notebook dezelfde resultaten als het R-script, inclusief de bootstra
 
 ## Installatie
 
-De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/).
+De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/). Pixi is een package- en omgevingsbeheerder. Met pixi installeert iedereen met één commando precies dezelfde, vastgelegde projectomgeving, inclusief de juiste Python-versie, zonder handmatig acties met conda, venv of pip.
 
 <details>
 <summary>Windows</summary>
-
+   
+Installeer pixi eenmalig, in PowerShell:
 ```powershell
 iwr -useb https://pixi.sh/install.ps1 | iex
 ```
-
+Sluit PowerShell en open opnieuw. 
 </details>
 
 <details>
@@ -46,15 +47,24 @@ curl -fsSL https://pixi.sh/install.sh | bash
 
 </details>
 
+Clone de repository in een gewenste werkmap, bijv.:
+```bash
+cd C:\Users\<username>\GitHub
+git clone https://github.com/HKV-products-services/boi-kust-statistiek.git
+cd boi-kust-statistiek
+```
 Installeer daarna de omgeving (inclusief het package zelf, editable) en de pre-commit hooks:
 
 ```bash
-cd boi-kust-statistiek
 pixi install
-pixi run install
 ```
 
 Handige taken: `pixi run pytest`, `pixi run pre-commit`, `pixi run docs` (preview van de website).
+
+De repository (zonder omgeving) kan ook geinstalleerd worden met: 
+```bash
+pip install boi-kust-statistiek
+```
 
 ## Gebruik
 
