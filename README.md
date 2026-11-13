@@ -73,7 +73,7 @@ pip install boi-kust-statistiek
    (`KUSTSTATISTIEK_DATA_PATH`, `KUSTSTATISTIEK_OUTPUT_PATH`, `KUSTSTATISTIEK_FIG_PATH`) of door
    `input_path` / `output_path` aan te passen in de cel **Settings** bovenaan elk notebook. De invoerdata zijn de
    map `data` uit het KNMI-archief `Update_statistiek_zeewaterstand_wind_06_archive_Feb2026`; ze staan niet
-   in deze repository.
+   in deze repository, maar kunnen opgevraagd worden bij Rijkswaterstaat, KNMI of HKV.
 2. Open het notebook in VS Code (of Jupyter) en kies de pixi-omgeving (`.pixi/envs/default`).
    Controleer waar nodig `stations` en `nb` (aantal bootstrap-samples) in de cel Settings.
 3. Voer alle cellen uit (*Run All*). Elke stap komt overeen met een R-chunk; de naam van de chunk staat in de kop.
@@ -117,21 +117,6 @@ R-aanroep `save()`); CSV-tabellen hebben de R-namen en hetzelfde tekstformaat al
 | `plotting.py`   | optionele figuren |
 
 Benodigd: numpy, pandas, scipy, pyreadr, scikit-misc, tqdm, matplotlib (en ipykernel om de notebooks te draaien); deze zitten allemaal in de pixi-omgeving.
-
-## Opmerkingen over reproduceerbaarheid
-
-- Deterministische resultaten komen tot op afrondingsniveau overeen met R (relatieve verschillen <= ~1e-10,
-  meestal bit-identiek): R op Windows gebruikt een andere `log`/`atan2` en sommatie in long double.
-- De trekkingen zijn bit-identiek aan R, behalve dat ~1 op de 3000 normale trekkingen in het laatste bit kan
-  verschillen (opnieuw door R's `log` op Windows); dit heeft geen zichtbaar effect.
-- De resultaten van een R-sessie komen alleen overeen als die sessie vanaf `set.seed` de chunks op volgorde
-  heeft doorlopen.
-- Deze code zijn een één-op-één reproductie van de R-scripts. Eigenaardigheden van de R-versie zijn dus bewust nagebootst.
-- `statistics-wl10-impr.Rmd`, chunk `dir-estimate-meas2`: de vectorgemiddelde windrichting
-  `(atan2(S, C)*(1/dc)) %% 360` is 0 of 360 graden voor wind van precies noord, afhankelijk van het platform
-  (KNMI: 0, R op Windows: 360). 0 en 360 vallen in verschillende sectoren van 45 graden, wat de
-  richtingsafhankelijke waterstandsstatistiek tot ~3 cm verandert. Python zet |hoek| < 1e-9 eerst op 0,
-  waarmee de tabellen van KNMI worden gereproduceerd.
 
 ## Contact
 
