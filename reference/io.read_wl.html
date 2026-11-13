@@ -187,6 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
   <ul class="collapse">
+  <li><a href="#kuststatistiek.io.read_wl.hwextract" id="toc-kuststatistiek.io.read_wl.hwextract" class="nav-link" data-scroll-target="#kuststatistiek.io.read_wl.hwextract">hwextract</a></li>
   <li><a href="#kuststatistiek.io.read_wl.link_wlmeas_windmeas" id="toc-kuststatistiek.io.read_wl.link_wlmeas_windmeas" class="nav-link" data-scroll-target="#kuststatistiek.io.read_wl.link_wlmeas_windmeas">link_wlmeas_windmeas</a></li>
   <li><a href="#kuststatistiek.io.read_wl.read_station_wlmeas" id="toc-kuststatistiek.io.read_wl.read_station_wlmeas" class="nav-link" data-scroll-target="#kuststatistiek.io.read_wl.read_station_wlmeas">read_station_wlmeas</a></li>
   <li><a href="#kuststatistiek.io.read_wl.read_wlmeas" id="toc-kuststatistiek.io.read_wl.read_wlmeas" class="nav-link" data-scroll-target="#kuststatistiek.io.read_wl.read_wlmeas">read_wlmeas</a></li>
@@ -218,53 +219,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
+<td><a href="#kuststatistiek.io.read_wl.hwextract">hwextract</a></td>
+<td>hwextract() of readwlmeastexeln.R and readmixed.R: peaks at least 54 samples (9 h) apart.</td>
+</tr>
+<tr class="even">
 <td><a href="#kuststatistiek.io.read_wl.link_wlmeas_windmeas">link_wlmeas_windmeas</a></td>
 <td>Collocate high-tide water levels with the vector-averaged measured wind of the preceding 3 hours.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#kuststatistiek.io.read_wl.read_station_wlmeas">read_station_wlmeas</a></td>
 <td>Dispatch to readwlmeas / readwlothermeas as in the R scripts.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#kuststatistiek.io.read_wl.read_wlmeas">read_wlmeas</a></td>
 <td>readwlmeas.R: files vlis/hoek/ijmu/held/harl/delf.txt (flag 1 = high water).</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#kuststatistiek.io.read_wl.read_wlmeastexeln">read_wlmeastexeln</a></td>
 <td>readwlmeastexeln.R (the R script reads texno1-4; texno5 holds the data after 2017).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#kuststatistiek.io.read_wl.read_wlothermeas">read_wlothermeas</a></td>
 <td>readwlothermeas.R: files hansweert/os11/denoever/westters/lauwerso/huibertg.txt (‘hoogwater’).</td>
 </tr>
 </tbody>
 </table>
+<section id="kuststatistiek.io.read_wl.hwextract" class="level3">
+<h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.hwextract">hwextract</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.hwextract(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>hwextract() of readwlmeastexeln.R and readmixed.R: peaks at least 54 samples (9 h) apart.</p>
+<p>Returns the high-water values and their 0-based indices in <code>data</code>.</p>
+</section>
 <section id="kuststatistiek.io.read_wl.link_wlmeas_windmeas" class="level3">
 <h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.link_wlmeas_windmeas">link_wlmeas_windmeas</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.link_wlmeas_windmeas(wlm, dtm, windstation, datadir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.link_wlmeas_windmeas(wlm, dtm, windstation, datadir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Collocate high-tide water levels with the vector-averaged measured wind of the preceding 3 hours.</p>
 </section>
 <section id="kuststatistiek.io.read_wl.read_station_wlmeas" class="level3">
 <h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.read_station_wlmeas">read_station_wlmeas</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_station_wlmeas(station, path, measfile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_station_wlmeas(station, path, measfile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Dispatch to readwlmeas / readwlothermeas as in the R scripts.</p>
 </section>
 <section id="kuststatistiek.io.read_wl.read_wlmeas" class="level3">
 <h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.read_wlmeas">read_wlmeas</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlmeas(path, filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlmeas(path, filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>readwlmeas.R: files vlis/hoek/ijmu/held/harl/delf.txt (flag 1 = high water).</p>
 </section>
 <section id="kuststatistiek.io.read_wl.read_wlmeastexeln" class="level3">
 <h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.read_wlmeastexeln">read_wlmeastexeln</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlmeastexeln(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    path,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    files<span class="op">=</span>(<span class="st">'texno1.csv'</span>, <span class="st">'texno2.csv'</span>, <span class="st">'texno3.csv'</span>, <span class="st">'texno4.csv'</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlmeastexeln(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    path,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    files<span class="op">=</span>(<span class="st">'texno1.csv'</span>, <span class="st">'texno2.csv'</span>, <span class="st">'texno3.csv'</span>, <span class="st">'texno4.csv'</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>readwlmeastexeln.R (the R script reads texno1-4; texno5 holds the data after 2017).</p>
 </section>
 <section id="kuststatistiek.io.read_wl.read_wlothermeas" class="level3">
 <h3 class="anchored" data-anchor-id="kuststatistiek.io.read_wl.read_wlothermeas">read_wlothermeas</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlothermeas(path, filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>io.read_wl.read_wlothermeas(path, filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>readwlothermeas.R: files hansweert/os11/denoever/westters/lauwerso/huibertg.txt (‘hoogwater’).</p>
 
 
