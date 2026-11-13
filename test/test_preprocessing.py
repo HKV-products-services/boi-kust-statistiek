@@ -34,7 +34,9 @@ def test_collocate_station():
     wl = tide.copy()
     wl[80:85] += 0.5  # surge peak 4-8 samples after the 2nd tidal high water (index 75)
     wind_dt = T0 + np.arange(0, 1000 * 600.0, 3600.0)
-    wind = {k: np.arange(len(wind_dt), dtype=float) for k in ("u10", "v10", "iews", "inss")}
+    wind = {
+        k: np.arange(len(wind_dt), dtype=float) for k in ("u10", "v10", "iews", "inss")
+    }
     w = collocate_station(wl, tide, dt, dt, wind_dt, wind, tstart=10, tend=1000)
     # tidal high waters at 75, 149, 224, ... (hwextract never returns the first sample)
     assert w["dt_tide"][0] == dt[75]
@@ -50,12 +52,16 @@ def test_collocate_station_missing_values():
     dt, tide = _tide(1000)
     wl = tide.copy()
     wl[113:186] = np.nan  # no water level around the 2nd tidal high water (index 149)
-    wind_dt = T0 + 13 * 3600 + np.arange(0, 1000 * 600.0, 3600.0)  # wind starts after the 1st
+    wind_dt = (
+        T0 + 13 * 3600 + np.arange(0, 1000 * 600.0, 3600.0)
+    )  # wind starts after the 1st
     wind = {k: np.ones(len(wind_dt)) for k in ("u10", "v10", "iews", "inss")}
     w = collocate_station(wl, tide, dt, dt, wind_dt, wind, tstart=1, tend=1000)
     # R: which.max of only NA -> NA; the row is kept with all values NA
     assert np.isnan(w["wl"][1]) and np.isnan(w["dt_wl"][1]) and np.isnan(w["tide"][1])
-    assert not np.isnan(w["wl"][0]) and np.isnan(w["u10"][0])  # before the wind (rule = 1)
+    assert not np.isnan(w["wl"][0]) and np.isnan(
+        w["u10"][0]
+    )  # before the wind (rule = 1)
     assert w["u10"][2] == 1.0
 
 
@@ -68,7 +74,9 @@ def _write_model(tmp_path, n=1000):
             t = ds.createVariable("time", "f8", ("time",))
             t.units = "minutes since 1987-01-01 00:00"
             t[:] = tmin
-            v = ds.createVariable("vlissing", "f4", ("time",), fill_value=np.float32(-999))
+            v = ds.createVariable(
+                "vlissing", "f4", ("time",), fill_value=np.float32(-999)
+            )
             v[:] = values
     lon, lat = np.array([3.0, 3.5, 4.0]), np.array([51.0, 51.5])
     nt = n // 6
@@ -82,11 +90,15 @@ def _write_model(tmp_path, n=1000):
         ds.createVariable("lat", "f8", ("lat",))[:] = lat
         ds.createVariable("lon", "f8", ("lon",))[:] = lon
         for k in ("u10", "v10", "iews", "inss"):
-            v = ds.createVariable(k, "i2", ("time", "lat", "lon"), fill_value=np.int16(-32767))
+            v = ds.createVariable(
+                k, "i2", ("time", "lat", "lon"), fill_value=np.int16(-32767)
+            )
             v.scale_factor, v.add_offset = 0.5, 10.0
             v.set_auto_maskandscale(False)
             raw = np.zeros((nt, 2, 3), dtype=np.int16)
-            raw[:, 1, 1] = 4  # nearest grid point of Vlissingen (51.42, 3.50): 10 + 0.5*4 = 12
+            raw[:, 1, 1] = (
+                4  # nearest grid point of Vlissingen (51.42, 3.50): 10 + 0.5*4 = 12
+            )
             v[:] = raw
 
 
@@ -196,10 +208,16 @@ def test_concat_multi(tmp_path):
     one = np.ones(4)
     # wind from the north (u = 0, v < 0) and from the east (u < 0, v = 0)
     a = _wlevels(T0 + np.arange(4.0), 0 * one, -one, -one, 0 * one, 2 * one, one)
-    b = _wlevels(T0 + 10 + np.arange(4.0), -3 * one, 0 * one, 0 * one, -4 * one, 3 * one, one)
+    b = _wlevels(
+        T0 + 10 + np.arange(4.0), -3 * one, 0 * one, 0 * one, -4 * one, 3 * one, one
+    )
     b["wl"][2] = np.nan  # removed
-    write_nc(st / "vlissing_SEAS5_tide_198101-00_int.nc", a, time_vars=("dt_tide", "dt_wl"))
-    write_nc(st / "vlissing_SEAS5_tide_198107-00_int.nc", b, time_vars=("dt_tide", "dt_wl"))
+    write_nc(
+        st / "vlissing_SEAS5_tide_198101-00_int.nc", a, time_vars=("dt_tide", "dt_wl")
+    )
+    write_nc(
+        st / "vlissing_SEAS5_tide_198107-00_int.nc", b, time_vars=("dt_tide", "dt_wl")
+    )
     concat_multi(tmp_path, stations=["vlissing"])
     d = read_seas5_multi("vlissing", tmp_path)  # no .RData -> reads the .nc file
     assert len(d["wl"]) == 7 and d["timelength"][0] == 1.0
@@ -208,7 +226,9 @@ def test_concat_multi(tmp_path):
     np.testing.assert_array_equal(d["dstress"], [90, 90, 90, 90, 0, 0, 0])
     np.testing.assert_array_equal(d["mwind"], [1, 1, 1, 1, 3, 3, 3])
     np.testing.assert_array_equal(d["mstress"], [1, 1, 1, 1, 4, 4, 4])
-    assert d["dt"].dtype.kind == "M" and d["dt"][4] == np.datetime64("1987-01-01T00:00:10")
+    assert d["dt"].dtype.kind == "M" and d["dt"][4] == np.datetime64(
+        "1987-01-01T00:00:10"
+    )
 
 
 def test_concat_wind(tmp_path):
@@ -216,7 +236,9 @@ def test_concat_wind(tmp_path):
         with netCDF4.Dataset(tmp_path / f"wind_{k}.nc", "w") as ds:
             ds.createDimension("time", 3)
             ds.createDimension("station", 2)
-            ds.createVariable("dt", "f8", ("time",))[:] = T0 + k * 1e6 + np.arange(3) * 21600
+            ds.createVariable("dt", "f8", ("time",))[:] = (
+                T0 + k * 1e6 + np.arange(3) * 21600
+            )
             for name, j in (("u10", 0), ("v10", 1), ("iews", 0), ("inss", 1)):
                 v = ds.createVariable(name, "f8", ("time", "station"))
                 v[:] = np.full((3, 2), -1.0) if j else np.zeros((3, 2))

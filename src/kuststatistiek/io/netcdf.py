@@ -33,7 +33,9 @@ def _missing_mask(raw, var):
     for mv in np.ravel(missing).astype(float):
         if np.isnan(mv):
             continue
-        if np.issubdtype(var.dtype, np.floating):  # ncdf4 compares floats with a relative tolerance
+        if np.issubdtype(
+            var.dtype, np.floating
+        ):  # ncdf4 compares floats with a relative tolerance
             mask |= np.abs(raw - mv) < abs(mv) * 1e-5
         else:
             mask |= raw == mv
@@ -128,7 +130,9 @@ def read_nc(path, decode_times=True):
     with netCDF4.Dataset(path) as ds:
         for name, var in ds.variables.items():
             var.set_auto_maskandscale(True)
-            values = np.atleast_1d(np.ma.filled(np.ma.asarray(var[:], dtype=float), np.nan))
+            values = np.atleast_1d(
+                np.ma.filled(np.ma.asarray(var[:], dtype=float), np.nan)
+            )
             if decode_times and getattr(var, "units", None) == EPOCH_UNITS:
                 values = seconds_to_datetime64(values)
             out[name] = values

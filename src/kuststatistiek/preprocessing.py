@@ -104,15 +104,13 @@ def collocate_station(
 ):
     """Body of the station loop of readmixed.R for one run and one station.
 
-    Parameters
-    ----------
-    val_wl, val_tide : water level and tide-only series (same time axis)
-    dt_wl, dt_tide, dt_wind : POSIXct seconds of the water level, tide and wind series
-    wind : dict with the SEAS5 series u10, v10, iews, inss at the nearest grid point
-    tstart, tend : 1-based indices in dt_wl of the period to keep
-    tmin : optional earliest time to keep (POSIXct seconds); not in R, used to discard the first month
+    `val_wl` and `val_tide` are the water level and tide-only series (same time axis); `dt_wl`,
+    `dt_tide` and `dt_wind` the POSIXct seconds of the water level, tide and wind series; `wind` a
+    dict with the SEAS5 series u10, v10, iews, inss at the nearest grid point; `tstart` and `tend`
+    the 1-based indices in dt_wl of the period to keep. `tmin` is an optional earliest time to keep
+    (POSIXct seconds); it is not in R and is used to discard the first month of the run.
 
-    Returns the R list `wlevels`: tide, wl, dt_tide, dt_wl, u10, v10, iews, inss.
+    Returns the R list `wlevels` as a dict: tide, wl, dt_tide, dt_wl, u10, v10, iews, inss.
     """
     val_wl = np.asarray(val_wl, dtype=float)
     tide, ind = hwextract(np.asarray(val_tide, dtype=float))  # high waters of the tide
@@ -122,7 +120,9 @@ def collocate_station(
     indic = np.clip(ind[:, None] + np.arange(-36, 37)[None, :], 0, n - 1)
     v = val_wl[indic]
     allna = np.all(np.isnan(v), axis=1)  # which.max(all NA) -> NA
-    imax = np.argmax(np.where(np.isnan(v), -np.inf, v), axis=1)  # which.max: first maximum
+    imax = np.argmax(
+        np.where(np.isnan(v), -np.inf, v), axis=1
+    )  # which.max: first maximum
     wlind = indic[np.arange(len(ind)), imax]
     wl = np.where(allna, np.nan, val_wl[wlind])
     dt_tide = np.asarray(dt_tide, dtype=float)
@@ -187,9 +187,11 @@ def read_mixed_file(
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     written = []
-    with Dataset(wl_file) as nc_wl, Dataset(tide_file) as nc_tide, Dataset(
-        wind_file
-    ) as nc_wind:
+    with (
+        Dataset(wl_file) as nc_wl,
+        Dataset(tide_file) as nc_tide,
+        Dataset(wind_file) as nc_wind,
+    ):
         dt_wl = nc_dim_time(nc_wl)
         dt_tide = nc_dim_time(nc_tide)
         dt_wind = nc_dim_time(nc_wind)
@@ -237,16 +239,17 @@ def read_mixed(
     """readmixed.R: collocate high-tide water levels, tide, wind and wind stress of all SEAS5 runs in
     `selection_file` (selection_stress_wind_tide.txt).
 
-    Parameters
-    ----------
-    selection_file : path of selection_stress_wind_tide.txt
-    out_dir : directory of the output files <station>_<run>_int.nc (R: the working directory)
-    path_map : optional {old prefix: new prefix} to translate the paths in the selection file (on the
-        KNMI servers, /net/pc200003/...) to the local location of the model output
-    runs : optional selection of row numbers (0-based) of the selection file; None = all runs. R's
-        test mode is `read_mixed_file` with the test files.
-    discard_first_month : discard the first month (spin-up) of every run, also for the runs whose
-        tstart in the selection file does not (see the module documentation); False = as readmixed.R
+    - `out_dir`: directory of the output files <station>_<run>_int.nc (R: the working directory).
+    - `path_map`: optional {old prefix: new prefix} to translate the paths in the selection file (on
+      the KNMI servers, /net/pc200003/...) to the local location of the model output.
+    - `stations`, `lat`, `lon`: stations (variable names in the water level files) and their
+      coordinates, used to pick the nearest SEAS5 grid point (default: those of readmixed.R).
+    - `runs`: optional selection of row numbers (0-based) of the selection file; None = all runs.
+      R's test mode is `read_mixed_file` with the test files.
+    - `discard_first_month`: discard the first month (spin-up) of every run, also for the runs whose
+      tstart in the selection file does not (see the module documentation); False = as readmixed.R.
+
+    Returns the paths of the files written.
     """
     selection = read_selection(selection_file)
     if runs is not None:
@@ -325,7 +328,10 @@ def concat_multi(path, stations=CONCAT_MULTI_STATIONS, out_path=None):
                 parts[k].append(w[k])
         d = {k: np.concatenate([np.atleast_1d(v) for v in p]) for k, p in parts.items()}
         ind = ~(
-            np.isnan(d["wl"]) | np.isnan(d["surge"]) | np.isnan(d["iews"]) | np.isnan(d["inss"])
+            np.isnan(d["wl"])
+            | np.isnan(d["surge"])
+            | np.isnan(d["iews"])
+            | np.isnan(d["inss"])
         )
         d = {k: v[ind] for k, v in d.items()}
         out = {
@@ -433,16 +439,21 @@ def concat_wind(
     out_path = Path(out_path) if out_path is not None else path
     out_path.mkdir(parents=True, exist_ok=True)
     lat, lon = _station_coordinates(stations, lat, lon)
-    own = {f"{s}_wind.nc" for s in stations}  # outputs of an earlier run (R writes .RData)
+    own = {
+        f"{s}_wind.nc" for s in stations
+    }  # outputs of an earlier run (R writes .RData)
     candidates = path.rglob("*") if recursive else path.iterdir()
     flist = sorted(
         f for f in candidates if "nc" in f.name and f.name not in own and f.is_file()
     )
     written = []
-    for j, station in enumerate(stations):  # as in R: all files are read for each station
+    for j, station in enumerate(
+        stations
+    ):  # as in R: all files are read for each station
         print(station)
         parts = [
-            _load_wind_file(f, j, lat, lon, discard_first_month, n_months) for f in flist
+            _load_wind_file(f, j, lat, lon, discard_first_month, n_months)
+            for f in flist
         ]
         parts = [p for p in parts if p is not None]
         nf = len(parts)
@@ -450,7 +461,10 @@ def concat_wind(
             continue
         d = {k: np.concatenate([p[k] for p in parts]) for k in parts[0]}
         ind = ~(
-            np.isnan(d["u10"]) | np.isnan(d["v10"]) | np.isnan(d["iews"]) | np.isnan(d["inss"])
+            np.isnan(d["u10"])
+            | np.isnan(d["v10"])
+            | np.isnan(d["iews"])
+            | np.isnan(d["inss"])
         )
         d = {k: v[ind] for k, v in d.items()}
         out = {
