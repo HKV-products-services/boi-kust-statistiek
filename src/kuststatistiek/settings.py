@@ -15,19 +15,19 @@ import numpy as np
 DATA_PATH = Path(
     os.environ.get(
         "KUSTSTATISTIEK_DATA_PATH",
-        r"C:\Users\kindermann\Documents\Projecten\PR5197_Code review\Update_statistiek_zeewaterstand_wind_06_archive_Feb2026 2\Update_statistiek_zeewaterstand_wind_06_archive_Feb2026\data",
+        r"Update_statistiek_zeewaterstand_wind_06_archive_Feb2026\data",
     )
 )
 OUTPUT_PATH = Path(
     os.environ.get(
         "KUSTSTATISTIEK_OUTPUT_PATH",
-        r"C:\Users\kindermann\Documents\Projecten\PR5197_Code review\Python\results\data",
+        r"results\data",
     )
 )
 FIG_PATH = Path(
     os.environ.get(
         "KUSTSTATISTIEK_FIG_PATH",
-        r"C:\Users\kindermann\Documents\Projecten\PR5197_Code review\Python\results\figuren",
+        r"results\figuren",
     )
 )
 
