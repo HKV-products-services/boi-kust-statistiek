@@ -31,7 +31,7 @@ De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/). Pixi is e
 <details>
 <summary>Windows</summary>
    
-Installeer pixi eenmalig, in PowerShell:
+1. Installeer pixi eenmalig, in PowerShell:
 ```powershell
 iwr -useb https://pixi.sh/install.ps1 | iex
 ```
@@ -47,21 +47,22 @@ curl -fsSL https://pixi.sh/install.sh | bash
 
 </details>
 
-Clone de repository in een gewenste werkmap, bijv.:
+2. Clone de repository in een gewenste werkmap, bijv.:
 ```bash
 cd C:\Users\<username>\GitHub
 git clone https://github.com/HKV-products-services/boi-kust-statistiek.git
 cd boi-kust-statistiek
 ```
-Installeer daarna de omgeving (inclusief het package zelf, editable) en de pre-commit hooks:
+3. Installeer daarna de omgeving (inclusief het package zelf, editable) en de pre-commit hooks:
 
 ```bash
 pixi install
 ```
-
 Handige taken: `pixi run pytest`, `pixi run pre-commit`, `pixi run docs` (preview van de website).
 
-De repository (zonder omgeving) kan ook geinstalleerd worden met: 
+4. Open in VS Code (of ander programma waarin je met Python werkt) de geïnstalleerde Folder (C:\Users\<username>\GitHub\boi-kust-statistiek) en zorg dat je de bijbehorende pixi omgeving selecteert als Python kernel (.pixi\envs\default\python.exe).
+   
+De repository (zonder omgeving) kan ook geïnstalleerd worden met: 
 ```bash
 pip install boi-kust-statistiek
 ```
