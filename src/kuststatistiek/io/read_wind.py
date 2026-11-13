@@ -44,17 +44,24 @@ def read_knmi_pothourly(station, datadir):
     return _knmi_sorted(data, 0, 1, [2, 4])
 
 
+def _read_seas5(path):
+    """{name: array} of a preprocessed SEAS5 file: the .RData file of the R scripts if it exists,
+    otherwise the .nc file of kuststatistiek.preprocessing."""
+    path = Path(path)
+    if not path.exists() and path.with_suffix(".nc").exists():
+        from kuststatistiek.io.netcdf import read_nc
+
+        return read_nc(path.with_suffix(".nc"))
+    d = pyreadr.read_r(path)
+    return {k: d[k][k].to_numpy() for k in d.keys()}
+
+
 def read_seas5_wind(station, input_path):
-    """<station>_wind.RData: dt, mstress, dstress, mwind, dwind (6-hourly SEAS5)."""
-    d = pyreadr.read_r(Path(input_path) / f"{station}_wind.RData")
-    return {
-        k: d[k][k].to_numpy()
-        for k in ["dt", "mstress", "dstress", "mwind", "dwind"]
-        if k in d
-    }
+    """<station>_wind.RData (or .nc): dt, mstress, dstress, mwind, dwind (6-hourly SEAS5)."""
+    d = _read_seas5(Path(input_path) / f"{station}_wind.RData")
+    return {k: d[k] for k in ["dt", "mstress", "dstress", "mwind", "dwind"] if k in d}
 
 
 def read_seas5_multi(station, input_path):
-    """<station>_multi_int.RData: SEAS5-DCSM5 high-tide water levels with collocated wind."""
-    d = pyreadr.read_r(Path(input_path) / f"{station}_multi_int.RData")
-    return {k: d[k][k].to_numpy() for k in d.keys()}
+    """<station>_multi_int.RData (or .nc): SEAS5-DCSM5 high-tide water levels with collocated wind."""
+    return _read_seas5(Path(input_path) / f"{station}_multi_int.RData")

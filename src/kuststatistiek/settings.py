@@ -332,3 +332,64 @@ PRODUCTION_WL_STATIONNAME = [
     "Huibertgat",
     "Delfzijl",
 ]
+
+# ------------------------------------------------------------------------------------------
+# preprocessing of the SEAS5 / DCSM-5 model data (readmixed.R, concat_multi_ex.R, concat_wind.R)
+# ------------------------------------------------------------------------------------------
+# readmixed.R: stations (variable names in the water level netCDF files) and the coordinates used to
+# pick the nearest SEAS5 wind grid point ("manual: lats and lons")
+MIXED_STATIONS = [
+    "vlissing",
+    "hoekvanh",
+    "ijmuiden",
+    "denhelde",
+    "harlinge",
+    "delfzijl",
+    "westters",
+    "denoever",
+    "os11",
+    "huibertg",
+    "lauwerso",
+]
+MIXED_LAT = [
+    51.42,
+    52.00,
+    52.42,
+    53.00,
+    53.25,
+    53.33,
+    53.33,
+    53.00,
+    51.67,
+    53.58,
+    53.42,
+]
+MIXED_LON = [3.50, 4.12, 4.50, 4.62, 5.38, 7.00, 5.12, 5.00, 3.50, 6.38, 6.25]
+
+# concat_multi_ex.R: stations for which <station>_multi_int is made
+CONCAT_MULTI_STATIONS = [
+    "vlissing",
+    "os11",
+    "hoekvanh",
+    "ijmuiden",
+    "denhelde",
+    "denoever",
+    "westters",
+    "harlinge",
+    "lauwerso",
+    "delfzijl",
+    "huibertg",
+]
+
+# concat_wind.R: station j is column j of the matrices in the half-year wind files. Note: the delivered
+# data has westters_wind.RData and no harlinge_wind.RData, so the wind files of the Feb2026 data were
+# made with another station list than the one in concat_wind.R of the archive.
+CONCAT_WIND_STATIONS = [
+    "vlissing",
+    "hoekvanh",
+    "ijmuiden",
+    "denhelde",
+    "harlinge",
+    "huibertg",
+    "delfzijl",
+]

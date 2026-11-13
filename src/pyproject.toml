@@ -21,6 +21,7 @@ authors = [
 
 dependencies = [
   "matplotlib",
+  "netCDF4",
   "numpy",
   "pandas",
   "pyreadr",

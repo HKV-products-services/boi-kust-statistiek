@@ -69,11 +69,16 @@ quartodoc:
         - rrandom
         - rstream
         - rutils
+    - title: Preprocessing
+      desc: Ports of readmixed.R, concat_multi_ex.R and concat_wind.R (SEAS5 / DCSM-5 model data).
+      contents:
+        - preprocessing
     - title: Input and output
       contents:
         - io.read_wind
         - io.read_wl
         - io.rdata
+        - io.netcdf
     - title: Settings and plotting
       contents:
         - settings
