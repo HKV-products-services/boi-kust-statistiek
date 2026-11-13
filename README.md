@@ -26,7 +26,7 @@ run van het notebook dezelfde resultaten als het R-script, inclusief de bootstra
 
 ## Installatie
 
-De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/). Pixi is een package- en omgevingsbeheerder. Met pixi installeert iedereen met één commando precies dezelfde, vastgelegde projectomgeving, inclusief de juiste Python-versie, zonder handmatig acties met conda, venv of pip.
+De omgeving wordt beheerd met [Pixi](https://pixi.prefix.dev/latest/). Pixi is een package- en omgevingsbeheerder. Met pixi installeert iedereen met één commando precies dezelfde, vastgelegde projectomgeving, inclusief de juiste Python-versie, zonder handmatige acties met conda, venv of pip.
 
 <details>
 <summary>Windows</summary>
