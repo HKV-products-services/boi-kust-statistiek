@@ -13,7 +13,7 @@ name = "boi-kust-statistiek"
 dynamic = ["version"]
 description = "Python version of the KNMI wind and sea water level statistics (BOI kust, Feb2026)"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.15"
 license = {text = "GNU-GPL V3"}
 authors = [
   { name = "P. Kindermann", email = "P.Kindermann@hkv.nl" },
