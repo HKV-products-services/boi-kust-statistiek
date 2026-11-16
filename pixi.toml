@@ -41,7 +41,7 @@ pre-commit = "pre-commit run --all-files"
 #]
 
 [dependencies]
-python = ">=3.11"
+python = "3.12.*"
 ipykernel ="*"
 ipywidgets ="*"
 matplotlib ="*"
