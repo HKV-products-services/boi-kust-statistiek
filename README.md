@@ -69,14 +69,15 @@ pip install boi-kust-statistiek
 
 ## Gebruik
 
-1. Geef aan waar de invoerdata staan en waar de resultaten heen moeten, met de omgevingsvariabelen
+1. Open de folder met de notebooks: `docs/examples/notebooks/`
+2. Geef aan waar de invoerdata staan en waar de resultaten heen moeten, met de omgevingsvariabelen
    (`KUSTSTATISTIEK_DATA_PATH`, `KUSTSTATISTIEK_OUTPUT_PATH`, `KUSTSTATISTIEK_FIG_PATH`) of door
    `input_path` / `output_path` aan te passen in de cel **Settings** bovenaan elk notebook. De invoerdata zijn de
    map `data` uit het KNMI-archief `Update_statistiek_zeewaterstand_wind_06_archive_Feb2026`; ze staan niet
    in deze repository, maar kunnen opgevraagd worden bij Rijkswaterstaat, KNMI of HKV.
-2. Open het notebook in VS Code (of Jupyter) en kies de pixi-omgeving (`.pixi/envs/default`).
+3. Open het notebook in VS Code (of Jupyter) en kies de pixi-omgeving (`.pixi/envs/default`).
    Controleer waar nodig `stations` en `nb` (aantal bootstrap-samples) in de cel Settings.
-3. Voer alle cellen uit (*Run All*). Elke stap komt overeen met een R-chunk; de naam van de chunk staat in de kop.
+4. Voer alle cellen uit (*Run All*). Elke stap komt overeen met een R-chunk; de naam van de chunk staat in de kop.
 
 Draai de notebooks in de volgorde van hun nummers: latere notebooks lezen de resultaten van eerdere
 (2 heeft 1 nodig; 4 heeft 3 nodig; 6 heeft 2, 3 en 4 nodig; 5 en 7 hebben alleen de invoerdata nodig).
